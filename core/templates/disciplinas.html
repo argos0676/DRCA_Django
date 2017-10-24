@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block titulo %}Disciplinas{% endblock %}
+
+{% block conteudo %} 
+<legend>Disciplinas</legend>
+	<div class="row">
+		<div class="col-md-2">
+			<a href="cadastro-aluno.html"><button type="button" class="btn btn-primary glyphicon glyphicon-plus-sign"> Novo</button></a>
+		</div>
+		<div class="col-md-4">
+			<div class="input-group">
+				<span class="input-group-btn">
+					<button class="btn btn-default" type="button">Pesquisar</button>
+				</span>
+				<input type="text" class="form-control" placeholder="Procurando por...">
+			</div><!-- input group -->
+		</div>
+	</div>
+	
+	<div class="row">
+		<div class="row-md-12">
+		<br>
+		<div class="panel panel-primary">
+		<!-- Default panel content -->
+		<!-- Table -->
+		<table class="table table-striped">
+			<thead>
+				<tr class="bg-primary table-striped">
+					<th>Codigo</th>
+					<th>Nome</th>
+					<th>Status</th>
+					<th>Disciplina Requisito</th>
+					<th>Professor</th>
+				</tr>
+			</thead>
+			<tbody>
+			{%for aluno in alunos%}
+				<tr>
+					<th>{{aluno.matricula}}</th>
+					<th>{{aluno.nome}}</th>
+					<th>{{aluno.curso}}</th>
+					<th><a href="{% url 'aluno_url' aluno.id %}" class="glyphicon glyphicon-edit"></a></th>
+					<th><a href="#" class="glyphicon glyphicon-list-alt"></a></th>
+				</tr>
+			{%endfor%}
+			</tbody>
+		</table>
+		</div>
+		</div>
+	</div>
+{% endblock %}
