@@ -4,9 +4,6 @@
 {% block conteudo %} 
 <legend>Disciplinas</legend>
 	<div class="row">
-		<div class="col-md-2">
-			<a href="cadastro-disciplinas.html"><button type="button" class="btn btn-primary glyphicon glyphicon-plus-sign"> Novo</button></a>
-		</div>
 		<div class="col-md-4">
 			<div class="input-group">
 				<span class="input-group-btn">
@@ -42,9 +39,9 @@
 					<th>{{disciplina.nome}}</th>
 					<th>{{disciplina.obg_let}}</th>
 					<th>{{disciplina.status}}</th>
-					<th>{{disciplina.credito}}</th>
-					<th>{{disciplina.professor}}</th>
-					<th>{{disciplina.curso}}</th>
+					<th>{{disciplina.credito.d_credito}}</th>
+					<th>{{disciplina.professor.nome}}</th>
+					<th>{{disciplina.curso.nome}}</th>
 				</tr>
 			{%endfor%}
 			</tbody>

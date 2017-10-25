@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from django.db import models
-from django.utils.encoding import smart_str, smart_unicode
+from django.utils.encoding import smart_str, smart_text
 
 class Credito(models.Model):
     d_credito = models.IntegerField()
@@ -9,20 +9,20 @@ class Credito(models.Model):
     a_credito_l = models.IntegerField()
     
     def __unicode__(self):
-        return smart_unicode(self.d_credito)
+        return smart_text(self.d_credito)
     
 class Departamento(models.Model):
     nome = models.CharField(max_length=30)
     
     def __unicode__(self):
-        return smart_unicode(self.nome)
+        return smart_text(self.nome)
     
 class Professor(models.Model):
     nome = models.CharField(max_length=30)
     departamento = models.ForeignKey(Departamento, null=True)
     
     def __unicode__(self):
-        return smart_unicode(self.nome)
+        return smart_text(self.nome)
         
 class Secretaria(models.Model):
     nome = models.CharField(max_length=30)
@@ -30,14 +30,14 @@ class Secretaria(models.Model):
     departamento = models.ForeignKey(Departamento, null=True)
     
     def __unicode__(self):
-        return smart_unicode(self.nome)
+        return smart_text(self.nome)
        
 class Curso(models.Model):
     nome = models.CharField(max_length=30)
     secretaria = models.ForeignKey(Secretaria, null=True)
     
     def __unicode__(self):
-        return smart_unicode(self.nome)
+        return smart_text(self.nome)
         
 class Disciplina(models.Model):
     nome = models.CharField(max_length=30)
@@ -50,7 +50,7 @@ class Disciplina(models.Model):
     professor = models.ForeignKey(Professor,null=True)
     
     def __unicode__(self):
-        return smart_unicode(self.nome)
+        return smart_text(self.nome)
     
 class Aluno(models.Model):
     nome = models.CharField(max_length=30)
@@ -60,4 +60,4 @@ class Aluno(models.Model):
     disciplinas = models.ManyToManyField(Disciplina,blank=True)
     
     def __unicode__(self):
-        return smart_unicode(self.nome)
+        return smart_text(self.nome)
