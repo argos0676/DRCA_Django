@@ -5,7 +5,7 @@
 <legend>Disciplinas</legend>
 	<div class="row">
 		<div class="col-md-2">
-			<a href="cadastro-aluno.html"><button type="button" class="btn btn-primary glyphicon glyphicon-plus-sign"> Novo</button></a>
+			<a href="cadastro-disciplinas.html"><button type="button" class="btn btn-primary glyphicon glyphicon-plus-sign"> Novo</button></a>
 		</div>
 		<div class="col-md-4">
 			<div class="input-group">
@@ -28,19 +28,23 @@
 				<tr class="bg-primary table-striped">
 					<th>Codigo</th>
 					<th>Nome</th>
+					<th>Disciplina Obrigatoria</th>
 					<th>Status</th>
-					<th>Disciplina Requisito</th>
+					<th>Credito</th>
 					<th>Professor</th>
+					<th>Curso</th>
 				</tr>
 			</thead>
 			<tbody>
-			{%for aluno in alunos%}
+			{%for disciplina in disciplinas%}
 				<tr>
-					<th>{{aluno.matricula}}</th>
-					<th>{{aluno.nome}}</th>
-					<th>{{aluno.curso}}</th>
-					<th><a href="{% url 'aluno_url' aluno.id %}" class="glyphicon glyphicon-edit"></a></th>
-					<th><a href="#" class="glyphicon glyphicon-list-alt"></a></th>
+					<th>{{disciplina.codigo}}</th>
+					<th>{{disciplina.nome}}</th>
+					<th>{{disciplina.obg_let}}</th>
+					<th>{{disciplina.status}}</th>
+					<th>{{disciplina.credito}}</th>
+					<th>{{disciplina.professor}}</th>
+					<th>{{disciplina.curso}}</th>
 				</tr>
 			{%endfor%}
 			</tbody>
