@@ -1,8 +1,8 @@
 from django.conf.urls import url
-from core import views
+from core.views import home, alunos, alunoInfo
 
 urlpatterns = [
-    url(r'^$', views.home),
-    url(r'^alunos$', views.alunos),
-    url(r'^user/(?P<user_id>\d+)/$', "core.views.alunoInfo", name='aluno_url'),
+    url(r'^$', home, name='home'),
+    url(r'^alunos$', alunos, name='alunos'),
+    url(r'^user/(?P<user_id>\d+)/$', alunoInfo, name='aluno_url'),
 ]
