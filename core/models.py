@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from django.db import models
-from django.utils.encoding import smart_str, smart_text
+from django.utils.encoding import smart_text
 
 class Credito(models.Model):
     d_credito = models.IntegerField()
