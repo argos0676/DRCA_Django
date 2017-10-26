@@ -5,33 +5,33 @@
 <div class="col-md-12">
 <div class="col-md-3"></div>
 <div class="col-md-6">
-<div class="panel panel-info">
+<div class="panel panel-default">
 <div class="panel-heading">Informações do Aluno</div>
 <div class="panel-body">
 	<div class="row">
-	<div class="form-group">
+	<div class="form-group col-md-10">
   		<label for="usr">Name:</label>
-  		<input type="text" class="form-control" id="usr" value="{{al.nome}}">
+  		<input type="text" class="form-control" id="usr" value="{{al.nome}}" disabled style="background-color:white">
 	</div>
 	</div>
 	<div class="row">
-	<div class="form-group">
+	<div class="form-group col-md-10">
   		<label for="usr">Matrícula:</label>
-  		<input type="text" class="form-control" id="usr" value="{{al.matricula}}">
+  		<input type="text" class="form-control" id="usr" value="{{al.matricula}}" disabled style="background-color:white">
 	</div>
 	</div>
 	<div class="row">
-	<div class="form-group">
+	<div class="form-group col-md-10">
   		<label for="usr">Curso:</label>
-  		<input type="text" class="form-control" id="usr" value="{{al.curso.nome}}">
+  		<input type="text" class="form-control" id="usr" value="{{al.curso.nome}}" disabled style="background-color:white">
 	</div>
 	</div>
 	{%if al.disciplinas%}
 	<div class="row">
-	<div class="form-group">
+	<div class="form-group col-md-10">
   		<label for="usr">Disciplinas:</label>
   		<br>
-  		<select>
+  		<select class="form-control">
   			{% for d in al.disciplinas.all %}
   			<option value="{{ d.id }}">{{ d.nome }}</option>
   			{% endfor %}
@@ -39,6 +39,18 @@
 	</div>
 	</div>
 	{%endif%}
+	<div class="row">
+	<div class="form-group col-md-10">
+  		<label for="usr">Creditos:</label>
+  		<br>
+  		<select class="form-control" >
+			  <option value="{{ al.credito.d_credito}}">d_credito: {{ al.credito.d_credito }}</option>
+			  <option value="{{ al.credito.d_credito_p}}">d_credito_p: {{ al.credito.d_credito_p }}</option>
+			  <option value="{{ al.credito.a_credito_o}}">a_credito_o: {{ al.credito.a_credito_o }}</option>
+			  <option value="{{ al.credito.a_credito_l}}">a_credito_l: {{ al.credito.a_credito_l }}</option>
+  		</select>
+	</div>
+	</div>
 	</div>
 </div>
 </div>
