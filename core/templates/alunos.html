@@ -13,14 +13,11 @@
 			</div><!-- input group -->
 		</div>
 	</div>
-	
-	<div class="row">
-		<div class="row-md-12">
-		<br>
+	<br>
 		<div class="panel panel-primary">
-		<!-- Default panel content -->
-		<!-- Table -->
-		<table class="table table-striped">
+			<!-- Default panel content -->
+			<!-- Table -->
+			<table class="table table-striped">
 			<thead>
 				<tr class="bg-primary table-striped">
 					<th>Matricula</th>
@@ -36,13 +33,12 @@
 					<th>{{aluno.matricula}}</th>
 					<th>{{aluno.nome}}</th>
 					<th>{{aluno.curso.nome}}</th>
-					<th><a href="{% url 'aluno_url' aluno.id %}" class="glyphicon glyphicon-edit"></a></th>
-					<th><a href="#" class="glyphicon glyphicon-list-alt"></a></th>
+					<th><a href="{% url 'aluno_url' aluno.id %}" ><i class="fa fa-info-circle" aria-hidden="true"></i></a></th>
+					<th><a href="#"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></th>
 				</tr>
 			{%endfor%}
 			</tbody>
-		</table>
+			</table>
+			</div>
 		</div>
-		</div>
-	</div>
 {% endblock %}

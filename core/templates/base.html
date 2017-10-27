@@ -1,21 +1,18 @@
+{% load staticfiles%}
 {% load bootstrap4 %} 
 {% bootstrap_css %} 
 {% bootstrap_javascript %} 
 {% load font_awesome %} 
 {% fa_css %}
-{% load staticfiles %}
 <!DOCTYPE html>
 <html lang="br">
-
 <head>
+
 	<meta charset="utf-8">
 	<title> {% block titulo %}{% endblock %}</title>
 
-	<!-- jQuery (necessary for bootstrap's Javascript plugins) -->
-	<script src="{% static 'jquery/jquery-1.11.2.js' %}"></script>
-	<!-- Include all compiled plugins (below), or includes individual files as neede -->
-	<script src="{% static 'js/bootstrap.min.js' %}"></script>
-
+    <script src="{% static "static_jquery/js/jquery.js" %}"></script>
+	
 	<style>
 	#footer {
     	background-size: cover;
@@ -33,9 +30,9 @@
 		<div class="container">
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03"
 			 aria-expanded="false" aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
+				<span href="/" class="navbar-toggler-icon"></span>
 			</button>
-			<a class="navbar-brand" href="/"><i class="fa fa-gitlab" aria-hidden="true"></i></a>
+			<a class="navbar-brand" href="/"><i class="fa fa-grav" aria-hidden="true"></i></a>
 			<div class="collapse navbar-collapse" id="navbarTogglerDemo03">
 				<ul class="navbar-nav mt-2 mt-lg-0">
 					<li class="nav-item active">
@@ -57,8 +54,8 @@
 	<!-- FOOTER -->
 	<hr>
 	<div id="footer">
-		<p align="center">Universidade Federal Rural do Rio de Janeiro
-		  <br> Desenvolvido por Leonardo Almeida
+		<p align="center"><small>Universidade Federal Rural do Rio de Janeiro</small>
+		  <br><small>Desenvolvido por Leonardo Almeida</small>
 		</p>
 	</div>
 </body>
