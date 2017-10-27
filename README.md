@@ -5,4 +5,4 @@ Site desenvolvido com django visando o controle de um departamento acadêmico.
 
 ![untitled](https://user-images.githubusercontent.com/25140680/32013418-cf369adc-b999-11e7-90d4-e73308ab368f.png)
 
-Django version: 1.11.5 / Python:3.6.3 / Database: Sqlite3
+Django version: 1.11.6 / Python:3.6.3 / Database: Sqlite3

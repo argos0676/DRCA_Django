@@ -39,10 +39,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'core',
-    'jquery',
-    'django_static_jquery',
-    'bootstrap4',
-    'fa',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -125,6 +121,6 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-STATICFILES_DIRS = [
-                    os.path.join(BASE_DIR,"webfiles"),
-                   ]
+STATICFILES_DIRS = (
+                    os.path.join(BASE_DIR,"node_modules"),
+)

@@ -1,44 +1,50 @@
-{% extends "base.html" %}
-{% block titulo %}Alunos{% endblock %}
-
-{% block conteudo %} 
+{% extends "base.html" %} {% block titulo %}Alunos{% endblock %} {% block conteudo %}
 <legend>Alunos</legend>
-	<div class="row">
-		<div class="col-md-4">
-			<div class="input-group" action="." method="get">
+<div class="row">
+	<div class="col-md-4">
+		<div class="input-group" action="." method="get">
 			<input type="text" class="form-control" name="pesquisar_por" placeholder="Procurando por...">
-				<span class="input-group-btn">
-					<button class="btn btn-default" type="submit">Pesquisar</button>
-				</span>
-			</div><!-- input group -->
+			<span class="input-group-btn">
+				<button class="btn btn-default" type="submit">Pesquisar</button>
+			</span>
 		</div>
+		<!-- input group -->
 	</div>
-	<br>
-		<div class="panel panel-primary">
-			<!-- Default panel content -->
-			<!-- Table -->
-			<table class="table table-striped">
-			<thead>
-				<tr class="bg-primary table-striped">
-					<th>Matricula</th>
-					<th>Nome</th>
-					<th>Curso</th>
-					<th>Info</th>
-					<th>Matricula</th>
-				</tr>
-			</thead>
-			<tbody>
+</div>
+<br>
+<div class="panel panel-primary">
+	<!-- Default panel content -->
+	<!-- Table -->
+	<table class="table table-striped">
+		<thead>
+			<tr class="bg-primary table-striped">
+				<th>Matricula</th>
+				<th>Nome</th>
+				<th>Curso</th>
+				<th>Info</th>
+				<th>Matricula</th>
+			</tr>
+		</thead>
+		<tbody>
 			{%for aluno in alunos%}
-				<tr>
-					<th>{{aluno.matricula}}</th>
-					<th>{{aluno.nome}}</th>
-					<th>{{aluno.curso.nome}}</th>
-					<th><a href="{% url 'aluno_url' aluno.id %}" ><i class="fa fa-info-circle" aria-hidden="true"></i></a></th>
-					<th><a href="#"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></th>
-				</tr>
+			<tr>
+				<th>{{aluno.matricula}}</th>
+				<th>{{aluno.nome}}</th>
+				<th>{{aluno.curso.nome}}</th>
+				<th>
+					<a href="{% url 'aluno_url' aluno.id %}">
+						<i class="fa fa-info-circle" aria-hidden="true"></i>
+					</a>
+				</th>
+				<th>
+					<a href="#">
+						<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+					</a>
+				</th>
+			</tr>
 			{%endfor%}
-			</tbody>
-			</table>
-			</div>
-		</div>
+		</tbody>
+	</table>
+</div>
+</div>
 {% endblock %}
