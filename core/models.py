@@ -8,20 +8,20 @@ class Credito(models.Model):
     a_credito_o = models.IntegerField()
     a_credito_l = models.IntegerField()
     
-    def __unicode__(self):
+    def __str__(self):
         return smart_text(self.d_credito)
     
 class Departamento(models.Model):
     nome = models.CharField(max_length=30)
     
-    def __unicode__(self):
+    def __str__(self):
         return smart_text(self.nome)
     
 class Professor(models.Model):
     nome = models.CharField(max_length=30)
     departamento = models.ForeignKey(Departamento, null=True)
     
-    def __unicode__(self):
+    def __str__(self):
         return smart_text(self.nome)
         
 class Secretaria(models.Model):
@@ -29,14 +29,14 @@ class Secretaria(models.Model):
     tipo = models.IntegerField()
     departamento = models.ForeignKey(Departamento, null=True)
     
-    def __unicode__(self):
+    def __str__(self):
         return smart_text(self.nome)
        
 class Curso(models.Model):
     nome = models.CharField(max_length=30)
     secretaria = models.ForeignKey(Secretaria, null=True)
     
-    def __unicode__(self):
+    def __str__(self):
         return smart_text(self.nome)
         
 class Disciplina(models.Model):
@@ -49,7 +49,7 @@ class Disciplina(models.Model):
     curso = models.ForeignKey(Curso)
     professor = models.ForeignKey(Professor,null=True)
     
-    def __unicode__(self):
+    def __str__(self):
         return smart_text(self.nome)
     
 class Aluno(models.Model):
@@ -59,5 +59,5 @@ class Aluno(models.Model):
     credito = models.ForeignKey(Credito)
     disciplinas = models.ManyToManyField(Disciplina,blank=True)
     
-    def __unicode__(self):
+    def __str__(self):
         return smart_text(self.nome)

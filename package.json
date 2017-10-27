@@ -1,0 +1,29 @@
+{
+  "name": "drca_django",
+  "version": "1.0.0",
+  "description": "Departamento de Registro e Controle Academico",
+  "main": "index.js",
+  "scripts": {
+    "http-server": "http-server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Leoalmeida95/DRCA_Django.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Leoalmeida95/DRCA_Django/issues"
+  },
+  "homepage": "https://github.com/Leoalmeida95/DRCA_Django#readme",
+  "dependencies": {
+    "bootstrap": "^4.0.0-beta.2",
+    "font-awesome": "^4.7.0",
+    "jquery": "^3.2.1",
+    "popper.js": "^1.12.6"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-pug": "^3.3.0"
+  }
+}

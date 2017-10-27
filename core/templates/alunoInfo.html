@@ -2,7 +2,7 @@
 <div class="col-sm-6 mx-auto mt-3">
 	<div class="card">
 		<div class="card-header">Informações do Aluno</div>
-		<div class="panel-block">
+		<div class="card-body">
 			<div class="row">
 				<div class="form-group col-md-10">
 					<label for="usr">Name:</label>
@@ -21,7 +21,7 @@
 					<input type="text" class="form-control" id="usr" value="{{al.curso.nome}}" disabled style="background-color:white">
 				</div>
 			</div>
-			{%if al.disciplinas%}
+			{%if al.disciplinas != none%}
 			<div class="row">
 				<div class="form-group col-md-10">
 					<label for="usr">Disciplinas:</label>

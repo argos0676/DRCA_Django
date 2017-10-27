@@ -2,49 +2,54 @@
 <legend>Alunos</legend>
 <div class="row">
 	<div class="col-md-4">
-		<div class="input-group" action="." method="get">
+		<form class="input-group" action="alunos" method="get">
 			<input type="text" class="form-control" name="pesquisar_por" placeholder="Procurando por...">
 			<span class="input-group-btn">
-				<button class="btn btn-default" type="submit">Pesquisar</button>
+				<button class="btn btn-primary" type="submit">Pesquisar</button>
 			</span>
-		</div>
-		<!-- input group -->
+		</form>
 	</div>
 </div>
-<br>
-<div class="panel panel-primary">
-	<!-- Default panel content -->
-	<!-- Table -->
-	<table class="table table-striped">
-		<thead>
-			<tr class="bg-primary table-striped">
-				<th>Matricula</th>
-				<th>Nome</th>
-				<th>Curso</th>
-				<th>Info</th>
-				<th>Matricula</th>
-			</tr>
-		</thead>
-		<tbody>
-			{%for aluno in alunos%}
-			<tr>
-				<th>{{aluno.matricula}}</th>
-				<th>{{aluno.nome}}</th>
-				<th>{{aluno.curso.nome}}</th>
-				<th>
-					<a href="{% url 'aluno_url' aluno.id %}">
-						<i class="fa fa-info-circle" aria-hidden="true"></i>
-					</a>
-				</th>
-				<th>
-					<a href="#">
-						<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-					</a>
-				</th>
-			</tr>
-			{%endfor%}
-		</tbody>
-	</table>
-</div>
+<div class="row">
+	<div class="col-md-8 mt-3">
+		<div class="table-responsive">
+			<form method="post" action="">
+				<table class="table table-striped table-bordered table-list-search sortable">
+					<thead>
+						<tr class="bg-primary table-striped">
+							<th>Matricula</th>
+							<th>Nome</th>
+							<th>Curso</th>
+							<th>Info</th>
+							<th>Imprimir</th>
+						</tr>
+					</thead>
+					<tbody>
+						{%for aluno in alunos%}
+						<tr>
+							<th>{{aluno.matricula}}</th>
+							<th>{{aluno.nome}}</th>
+							<th>{{aluno.curso.nome}}</th>
+							<th>
+								<a href="{% url 'aluno_url' aluno.id %}">
+									<i class="fa fa-info-circle" aria-hidden="true"></i>
+								</a>
+							</th>
+							<th>
+								<a href="/pdf">
+									<i class="fa fa-print" aria-hidden="true"></i>
+								</a>
+							</th>
+						</tr>
+						{% empty %}
+						<div class="alert alert-info" role="alert">
+							Nenhum resultado foi encotrado.
+						</div>
+						{%endfor%}
+					</tbody>
+				</table>
+			</form>
+		</div>
+	</div>
 </div>
 {% endblock %}
