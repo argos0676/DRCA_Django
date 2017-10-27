@@ -6,7 +6,6 @@ from django.template import loader
 from core.models import Aluno, Disciplina, Secretaria
 from django.views.generic import ListView
 from reportlab.pdfgen import canvas
-from io import BytesIO
 
 def home(request):
     template = loader.get_template('index.html')
@@ -62,27 +61,23 @@ class ListaAlunos(ListView):
             alunos = alunos.filter(nome__icontains=result)
         return alunos
 
-def some_view(request):
+def some_view(request,user_id):
     # usar pip install reportlab
     # Create the HttpResponse object with the appropriate PDF headers.
     response = HttpResponse(content_type='application/pdf')
-    response['Content-Disposition'] = 'attachment; filename="somefilename.pdf"'
+    response['Content-Disposition'] = 'attachment; filename="Aluno.pdf"'
 
-    buffer = BytesIO()
+    al = Aluno.objects.get(id=user_id)
 
-    # Create the PDF object, using the BytesIO object as its "file."
-    p = canvas.Canvas(buffer)
+ # Create the PDF object, using the response object as its "file."
+    p = canvas.Canvas(response)
 
     # Draw things on the PDF. Here's where the PDF generation happens.
     # See the ReportLab documentation for the full list of functionality.
-    p.drawString(100, 100, "Hello world.")
+    p.drawString(100, 750,str(al))
 
-    # Close the PDF object cleanly.
+ # Close the PDF object cleanly, and we're done.
     p.showPage()
     p.save()
 
-    # Get the value of the BytesIO buffer and write it to the response.
-    pdf = buffer.getvalue()
-    buffer.close()
-    response.write(pdf)
     return response
