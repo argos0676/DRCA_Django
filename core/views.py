@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
-from __future__ import unicode_literals
-from django.shortcuts import render
-from django.http import HttpResponse
+from django.shortcuts import render, redirect
+from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
 from core.models import Aluno, Disciplina, Secretaria
 from django.views.generic import ListView
 from reportlab.pdfgen import canvas
+from django.core.urlresolvers import reverse
 
 def home(request):
     template = loader.get_template('index.html')
@@ -30,6 +30,9 @@ class ListaSecretarias(ListView):
         if result is not None:
             secretarias = secretarias.filter(nome__icontains=result)
         return secretarias
+
+def secretariaAdmin(request):    
+    return HttpResponseRedirect(reverse('admin:app_list', kwargs={'app_label':'core'}))
 
 class ListaDisciplinas(ListView):
     template_name = 'disciplinas.html'
