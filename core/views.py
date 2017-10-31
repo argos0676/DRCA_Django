@@ -1,11 +1,9 @@
 # -*- coding: utf-8 -*-
-from django.shortcuts import render, redirect
+from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
 from core.models import Aluno, Disciplina, Secretaria
 from django.views.generic import ListView
-from reportlab.pdfgen import canvas
-from django.core.urlresolvers import reverse
 
 def home(request):
     template = loader.get_template('index.html')
@@ -31,7 +29,8 @@ class ListaSecretarias(ListView):
             secretarias = secretarias.filter(nome__icontains=result)
         return secretarias
 
-def secretariaAdmin(request):    
+def secretariaAdmin(request):   
+    from django.core.urlresolvers import reverse 
     return HttpResponseRedirect(reverse('admin:app_list', kwargs={'app_label':'core'}))
 
 class ListaDisciplinas(ListView):
@@ -65,22 +64,25 @@ class ListaAlunos(ListView):
         return alunos
 
 def some_view(request,user_id):
-    # usar pip install reportlab
-    # Create the HttpResponse object with the appropriate PDF headers.
+    from reportlab.pdfgen import canvas
+    from reportlab.lib.units import inch
+    
     response = HttpResponse(content_type='application/pdf')
-    response['Content-Disposition'] = 'attachment; filename="Aluno.pdf"'
-
     al = Aluno.objects.get(id=user_id)
+    filename = str(al)
+    response['Content-Disposition'] = 'attachment; filename={0}.pdf'.format(filename)
+    
+    pdf = canvas.Canvas(response)
+    pdf.setFont('Courier',12)
 
- # Create the PDF object, using the response object as its "file."
-    p = canvas.Canvas(response)
+    tupla = ('Dados do Aluno para impressão:', 'Nome: '+str(al),'Matrícula: '+str(al.matricula), 'Curso: '+str(al.curso.nome))
+    lista = pdf.beginText(inch * 1, inch * 10)
+    for i in range(0,len(tupla)):
+        lista.textLine(tupla[i])
 
-    # Draw things on the PDF. Here's where the PDF generation happens.
-    # See the ReportLab documentation for the full list of functionality.
-    p.drawString(100, 750,str(al))
-
- # Close the PDF object cleanly, and we're done.
-    p.showPage()
-    p.save()
+    pdf.drawText(lista)
+    #pdf.drawString(30, 750,conteudo)
+    pdf.showPage()
+    pdf.save()
 
     return response
