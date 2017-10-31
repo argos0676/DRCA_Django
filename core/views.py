@@ -7,6 +7,8 @@ from reportlab.pdfgen import canvas
 from reportlab.lib.units import inch
 from django.core.urlresolvers import reverse
 from easy_pdf.views import PDFTemplateView
+import xlsxwriter
+from io import BytesIO
 
 def home(request):
     template = loader.get_template('index.html')
@@ -66,7 +68,6 @@ class ListaAlunos(ListView):
         return alunos
 
 def some_view(request,user_id):
-    
     response = HttpResponse(content_type='application/pdf')
     al = Aluno.objects.get(id=user_id)
     filename = str(al)
@@ -96,3 +97,29 @@ class HelloPDFView(PDFTemplateView):
         title='Import pdf',
         **kwargs
     )
+
+def excel(request):
+    output = BytesIO()
+    # Feed a buffer to workbook
+    workbook = xlsxwriter.Workbook(output)
+    worksheet = workbook.add_worksheet("users")
+    users = Aluno.objects.all()
+    bold = workbook.add_format({'bold': True})
+    columns = ["id", "nome", "matricula", "curso"]
+    # Fill first row with columns
+    row = 0
+    for i,elem in enumerate(columns):
+        worksheet.write(row, i, elem, bold)
+    row += 1
+    # Now fill other rows with columns
+    for user in users:
+        worksheet.write(row, 0, user.id)
+        worksheet.write(row, 1, user.nome)
+        worksheet.write(row, 2, user.matricula)
+        worksheet.write(row, 3, user.curso.nome)
+        row += 1
+    # Close workbook for building file
+    workbook.close()
+    output.seek(0)
+    response = HttpResponse(output.read(), content_type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
+    return response
