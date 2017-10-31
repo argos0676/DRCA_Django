@@ -18,4 +18,5 @@ urlpatterns = [
     url(r'^secretarias$', ListaSecretarias.as_view(), name='ListaSecretarias'),
     url(r'^secretariaAdmin$', secretariaAdmin, name='secretariaAdmin'),
     url(r'^pdf/(?P<user_id>\d+)/$', some_view, name='some_view'),
+    url(r'^pdf$', HelloPDFView.as_view(), name='HelloPDFView'),
 ]

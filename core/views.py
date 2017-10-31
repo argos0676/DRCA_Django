@@ -1,9 +1,12 @@
-# -*- coding: utf-8 -*-
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
 from core.models import Aluno, Disciplina, Secretaria
 from django.views.generic import ListView
+from reportlab.pdfgen import canvas
+from reportlab.lib.units import inch
+from django.core.urlresolvers import reverse
+from easy_pdf.views import PDFTemplateView
 
 def home(request):
     template = loader.get_template('index.html')
@@ -30,7 +33,6 @@ class ListaSecretarias(ListView):
         return secretarias
 
 def secretariaAdmin(request):   
-    from django.core.urlresolvers import reverse 
     return HttpResponseRedirect(reverse('admin:app_list', kwargs={'app_label':'core'}))
 
 class ListaDisciplinas(ListView):
@@ -64,8 +66,6 @@ class ListaAlunos(ListView):
         return alunos
 
 def some_view(request,user_id):
-    from reportlab.pdfgen import canvas
-    from reportlab.lib.units import inch
     
     response = HttpResponse(content_type='application/pdf')
     al = Aluno.objects.get(id=user_id)
@@ -86,3 +86,13 @@ def some_view(request,user_id):
     pdf.save()
 
     return response
+
+class HelloPDFView(PDFTemplateView):
+    template_name = 'pdf.html'
+
+    def get_context_data(self, **kwargs):
+        return super(HelloPDFView, self).get_context_data(
+        pagesize='A4',
+        title='Import pdf',
+        **kwargs
+    )

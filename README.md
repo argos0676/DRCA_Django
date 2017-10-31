@@ -7,6 +7,8 @@ Departamento de Registro e Controle Academico - Projeto Web desenvolvido com Fra
     apt-get install -y nodejs
     npm install
     pip install reportlab
+    pip install django-easy-pdf
+    pip install WeasyPrint
     
     --dentro do projeto:
     npm init 
