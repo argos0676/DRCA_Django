@@ -1,11 +1,13 @@
 {% extends "base.html" %} {% block titulo %}Disciplinas{% endblock %} {% block conteudo %}
-<legend>Disciplinas</legend>
-<div class="row">
+<div class="row mt-3">
 	<div class="col-md-4">
+		<h2>
+			<span class="badge badge-primary">Disciplinas</span>
+		</h2>
 		<form class="input-group" action="disciplinas" method="get">
 			<input type="text" class="form-control" name="pesquisar_por" placeholder="Procurando por...">
 			<span class="input-group-btn">
-				<button class="btn btn-primary" type="submit">Pesquisar</button>
+				<button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Pesquisar</button>
 			</span>
 		</form>
 	</div>

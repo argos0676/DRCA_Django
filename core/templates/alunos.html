@@ -1,22 +1,23 @@
 {% extends "base.html" %} {% block titulo %}Alunos{% endblock %} {% block conteudo %}
-<legend>Alunos</legend>
-<div class="row">
+<div class="row mt-3">
 	<div class="col-md-4">
+			<h2>
+					<span class="badge badge-primary">Alunos</span>
+				</h2>
 		<form class="input-group" action="alunos" method="get">
 			<input type="text" class="form-control" name="pesquisar_por" placeholder="Procurando por...">
 			<span class="input-group-btn">
-				<button class="btn btn-primary" type="submit">Pesquisar</button>
+				<button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Pesquisar</button>
 			</span>
 		</form>
 	</div>
-	<div class="col-md-4"></div>
-	<div class="col-md-3 mt-3">
-		<small>Exportar pra Excel:</small>
+</div>
+<div class="text-right">
+		<small class="font-weight-light">Exportar pra Excel: </small>
 		<a href="/excel" style="color:green">
 			<i class="fa fa-table" aria-hidden="true"></i>
 		</a>
 	</div>
-</div>
 <div class="row">
 	<div class="col-md-8 mx-auto mt-3">
 		<div class="table-responsive">
