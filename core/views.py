@@ -18,6 +18,10 @@ def sobre(request):
     template = loader.get_template('sobre.html')
     return HttpResponse(template.render({}, request))
 
+def contato(request):
+    template = loader.get_template('contato.html')
+    return HttpResponse(template.render({}, request))
+
 def alunoInfo(request,user_id):
 	al = Aluno.objects.get(id=user_id)
 	template = loader.get_template('alunoInfo.html')
@@ -98,7 +102,7 @@ class HelloPDFView(PDFTemplateView):
     def get_context_data(self, **kwargs):
         return super(HelloPDFView, self).get_context_data(
         pagesize='A4',
-        title='Import pdf',
+        title='Informações adicionais',
         **kwargs
     )
 

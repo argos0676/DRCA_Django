@@ -1,137 +1,190 @@
-{% extends "easy_pdf/base.html" %}
-
-{% block extra_style %}
+{% extends "easy_pdf/base.html" %} {% block extra_style %}
 <style type="text/css">
     html {
         font-family: "Helvetica", "sans-serif";
         color: #333333;
     }
+
     p {
         margin: 0 0 6px 0;
         font-size: 11pt;
     }
+
     table {
         line-height: 140%;
         margin-bottom: 20px;
     }
-        table.bordered {
-            border-top: 0.1pt solid #999999;
-            border-bottom: 0.1pt solid #999999;
-        }
-        tr, td, th { border: none; }
-        th {
-            font-size: 10pt;
-            border-bottom: 0.1pt solid #999999;
-            padding: 3px 0;
-            line-height: 1;
-            font-weight: bold;
-        }
-        td {
-            font-size: 10pt;
-            vertical-align: top;
-            padding: 3px 0;
-        }
-        td:last-child { padding-bottom: 0; }
-    .text-left { text-align: left; }
-    .text-right { text-align: right; }
-    .bottom-10 { margin-bottom: 10px; }
-    .bottom-20 { margin-bottom: 20px; }
-    .header { color: #7f7f7f; }
-    .header p { font-size: 13px; line-height: 1.5em; }
-    .header-link { font-weight: bold; text-decoration: none; color: #4F81BD; font-size: 14px; }
-    .logo { margin-bottom: 20px; margin-left: -25px; }
-    .logo img { zoom: 60%; }
-    .recipient { margin-left: 7cm; }
+
+    table.bordered {
+        border-top: 0.1pt solid #999999;
+        border-bottom: 0.1pt solid #999999;
+    }
+
+    tr,
+    td,
+    th {
+        border: none;
+    }
+
+    th {
+        font-size: 10pt;
+        border-bottom: 0.1pt solid #999999;
+        padding: 3px 0;
+        line-height: 1;
+        font-weight: bold;
+    }
+
+    td {
+        font-size: 10pt;
+        vertical-align: top;
+        padding: 3px 0;
+    }
+
+    td:last-child {
+        padding-bottom: 0;
+    }
+
+    .text-left {
+        text-align: left;
+    }
+
+    .text-right {
+        text-align: right;
+    }
+
+    .bottom-10 {
+        margin-bottom: 10px;
+    }
+
+    .bottom-20 {
+        margin-bottom: 20px;
+    }
+
+    .header {
+        color: #7f7f7f;
+    }
+
+    .header p {
+        font-size: 13px;
+        line-height: 1.5em;
+    }
+
+    .header-link {
+        font-weight: bold;
+        text-decoration: none;
+        color: #4F81BD;
+        font-size: 14px;
+    }
+
+    .logo {
+        margin-bottom: 20px;
+        margin-left: -25px;
+    }
+
+    .logo img {
+        zoom: 60%;
+    }
+
+    .recipient {
+        margin-left: 7cm;
+    }
+
     .main h1 {
         margin: 18px 0 18px 0;
         font-size: 250%;
         font-weight: normal;
         color: #4F81BD;
     }
+
     .main h2 {
         margin: 18px 0 6px 0;
         font-size: 180%;
         font-weight: normal;
     }
-    .info { border: 1px solid #4F81BD; padding: 10px; margin-top: 50px; margin-bottom: 50px; }
-    .info a { color: #4F81BD; text-decoration: none; }
-</style>
-{% endblock %}
 
-{%block page_header%}
+    .info {
+        border: 1px solid #4F81BD;
+        padding: 10px;
+        margin-top: 50px;
+        margin-bottom: 50px;
+    }
+
+    .info a {
+        color: #4F81BD;
+        text-decoration: none;
+    }
+</style>
+{% endblock %} {%block page_header%}
 <div id="page-header">
     <div class="header">
-        <p class="logo"><img src="img/logo.jpg" /></p>
         <p>
-            Exemplo <br>
-            HTML TO PDF <br/>
+            Informações adicionais do Sistema DRCA - Departamento de Registro e Controle Acadêmico
         </p>
+        <br/>
         <p class="header-link">
-            <a class="header-link" href="https://blog.euvoupassar.com.br/wp-content/uploads/2013/12/UFRRJ.jpg">UFRRJ</a>
+            <a class="header-link" href="http://portal.ufrrj.br/">UFRRJ</a>
         </p>
     </div>
 </div>
-{% endblock %}
-
-{% block content %}
+<br> {% endblock %} {% block content %}
 <div id="content">
-    <div class="recipient bottom-10">
-        <p class="bottom-10">
-            <strong>Django Framework exemples</strong>
-            <br> Leonardo Almeida
-        </p>
-        <p>{{ today|date:"DATETIME_FORMAT" }} UTC</p>
-    </div>
-
-
     <p class="info">
-        Exemplo basico de como renderizar uma pagina html para pdf/impressao
+        O DRCA é um site para gerenciamento Acadêmico, onde é possível listas as Secretarias, os Departamentos e os Alunos registrados.
+        Além disso, é possível editar as Secretarias e gerar informações dos Alunos em Excel e PDF.
+        <br> O site é desenvolvido em Python utilizando o Framework Django e é possível encontrar o setup de instalação e o arquivo
+        do projeto para download
+        <a href="https://github.com/Leoalmeida95/DRCA_Django">neste link</a>
     </p>
-
     <div class="main">
-        <h1>Sample Invoice</h1>
-
+        <h1>Dados do Sistema:</h1>
         <table class="bordered bottom-20">
             <tr>
-                <td class="item-name"><strong>Invoice number</strong></td>
-                <td><strong>{{ today|date:"y/m/d/1" }}</strong></td>
+                <td class="item-name">
+                    <strong>Data de criação:</strong>
+                </td>
+                <td>
+                    <strong>IDE/Editor de texto:</strong>
+                </td>
             </tr>
             <tr>
-                <td class="item-name">Amount</td>
-                <td><strong>100 Doge</strong></td>
+                <td class="item-name">05/09/2017</td>
+                <td>
+                    VSCODE
+                </td>
             </tr>
         </table>
-
         <table>
             <thead>
                 <tr>
-                    <th class="text-left">Description</th>
-                    <th class="text-right">Amount</th>
-                    <th class="text-right">Tax</th>
-                    <th class="text-right">Total</th>
+                    <th class="text-center">Tecnologia</th>
+                    <th class="text-center">Front-End</th>
+                    <th class="text-center">Versionamento</th>
+                    <th class="text-center">Pacotes</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td class="text-left">Some stuff</td>
-                    <td class="text-right">100 Doge</td>
-                    <td class="text-right">0</td>
-                    <td class="text-right">100 Doge</td>
+                    <td class="text-center">Django Framework - Python</td>
+                    <td class="text-right">Bootstrap - fontawesome</td>
+                    <td class="text-right">Git - Github</td>
+                    <td class="text-right">npm - Node.js</td>
                 </tr>
             </tbody>
         </table>
-
         <table class="bottom-20">
             <tr>
-                <td><strong>Total</strong></td>
-                <td class="text-right"><strong>100 Doge</strong></td>
+                <td>
+                    <strong>Data de entrega:</strong>
+                </td>
+                <td class="text-right">
+                    <strong>??/??/????</strong>
+                </td>
             </tr>
         </table>
-
-        <h2>Payment details</h2>
-
+        <br>
+        <h1>Criador</h1>
         <p class="bottom-20">
-            Please cover the invoice within 10 days.
+            Leonardo Almeida da Silva
         </p>
     </div>
 </div>

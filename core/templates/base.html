@@ -3,19 +3,12 @@
 <html lang="br">
 
 <head>
-
 	<meta charset="utf-8">
 	<title> {% block titulo %}{% endblock %}</title>
 
 	<link href="{% static 'bootstrap/dist/css/bootstrap.min.css' %}" rel="stylesheet">
 	<link rel="stylesheet" href="{% static 'font-awesome/css/font-awesome.min.css' %} ">
 	<link rel="icon" href="{% static 'favicon.ico' %}">
-
-	<style>
-		#thead {
-			color: white;
-		}
-	</style>
 </head>
 
 <body>
@@ -25,8 +18,8 @@
 		 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
 		</button>
-		<a class="navbar-brand" href="/">
-			<img src="{% static 'book.png' %}" width="20" height="20" alt="">
+		<a class="navbar-brand ml-1" href="/">
+			<i class="fa fa-book" aria-hidden="true"></i>
 		</a>
 
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -52,16 +45,14 @@
 			</div>
 		</div>
 	</nav>
-	<div class="container">
-		{% block conteudo %} {% endblock %}
-	</div>
+	{% block conteudo %} {% endblock %}
 	<!-- FOOTER -->
 	<hr>
 	<div class="d-flex justify-content-center">
-		<p align="center">
-			<small class="font-weight-light">Universidade Federal Rural do Rio de Janeiro</small>
+		<p align="center" class="font-weight-light">
+			<small>Universidade Federal Rural do Rio de Janeiro</small>
 			<br/>
-			<small class="font-weight-light">Desenvolvido por Leonardo Almeida</small>
+			<small>Desenvolvido por Leonardo Almeida</small>
 		</p>
 	</div>
 	<script src="{% static 'jquery/dist/jquery.slim.min.js' %}"></script>

@@ -1,8 +1,32 @@
-{% extends "base.html" %} {% block titulo %}Sobre{% endblock %} {% block conteudo %}
-<!-- CONTENT -->
-<div class="container mt-3">
-    <h1>O que é o DRCA?</h1>
-		<div class="col-md-7 mx-auto my-3">
-		</div>
+{% extends "base.html" %} {% block titulo %}Sobre{% endblock %} {% block conteudo %} {% load staticfiles %}
+<div class="container">
+    <div class="mt-3 font-weight-light">
+        <div class="row">
+            <div class="col-md-6 text-left">
+                <h3>O que é o DRCA?</h3>
+            </div>
+            <div class="col-md-6 text-right mt-3">
+                <small><u>Para mais informações:</u> </small>
+                <a style="color:black" href="/pdf" title="Imprimir" target="_blank">
+                    <i class="fa fa-question-circle fa" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+        <br>
+        <p>O DRCA é um site para gerenciamento Acadêmico, onde é possível listas as Secretarias, os Departamentos e os Alunos
+            registrados. Além disso, é possível editar as Secretarias e gerar informações dos Alunos em Excel e PDF.</p>
+        <p>O site é desenvolvido em Python utilizando o Framework Django e é possível encontrar o setup de instalação e o arquivo
+            do projeto para download
+            <a href="https://github.com/Leoalmeida95/DRCA_Django">neste link</a>
+        </p>
+        <div class="row">
+            <div class="col-md-6 mt-3 text-right">
+                <img src="{% static 'ufrrj.png' %}" alt="Responsive image">
+            </div>
+            <div class="col-md-6">
+                <img src="{% static 'django-python.png' %}" alt="Responsive image">
+            </div>
+        </div>
+    </div>
 </div>
 {% endblock %}

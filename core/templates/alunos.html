@@ -1,30 +1,33 @@
 {% extends "base.html" %} {% block titulo %}Alunos{% endblock %} {% block conteudo %}
-<div class="row mt-3">
+<div class="row mt-3 ml-5">
 	<div class="col-md-4">
-			<h2>
-					<span class="badge badge-primary">Alunos</span>
-				</h2>
+		<h2>
+			<div class="badge badge-pill badge-info">Alunos</div>
+		</h2>
 		<form class="input-group" action="alunos" method="get">
 			<input type="text" class="form-control" name="pesquisar_por" placeholder="Procurando por...">
 			<span class="input-group-btn">
-				<button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Pesquisar</button>
+				<button class="btn btn-outline-info my-2 my-sm-0" type="submit">Pesquisar</button>
 			</span>
 		</form>
 	</div>
-</div>
-<div class="text-right">
-		<small class="font-weight-light">Exportar pra Excel: </small>
-		<a href="/excel" style="color:green">
-			<i class="fa fa-table" aria-hidden="true"></i>
-		</a>
+	<div class="col-md-3"></div>
+	<div class="col-md-5 mt-5">
+		<div class="ml-5 mt-3">
+			<small class="font-weight-light">Exportar pra Excel: </small>
+			<a href="/excel" style="color:green">
+				<i class="fa fa-table" aria-hidden="true"></i>
+			</a>
+		</div>
 	</div>
-<div class="row">
-	<div class="col-md-8 mx-auto mt-3">
-		<div class="table-responsive">
-			<form method="post" action="">
-				<table class="table table-striped table-bordered table-list-search sortable">
+</div>
+<div class="container">
+	<div class="row">
+		<div class="mx-auto mt-3">
+			<div class="table table-striped table-bordered">
+				<table>
 					<thead>
-						<tr class="bg-primary table-striped" id="thead">
+						<tr>
 							<th>Matricula</th>
 							<th>Nome</th>
 							<th>Curso</th>
@@ -56,7 +59,7 @@
 						{%endfor%}
 					</tbody>
 				</table>
-			</form>
+			</div>
 		</div>
 	</div>
 </div>
