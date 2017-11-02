@@ -14,6 +14,10 @@ def home(request):
     template = loader.get_template('index.html')
     return HttpResponse(template.render({}, request))
 
+def sobre(request):
+    template = loader.get_template('sobre.html')
+    return HttpResponse(template.render({}, request))
+
 def alunoInfo(request,user_id):
 	al = Aluno.objects.get(id=user_id)
 	template = loader.get_template('alunoInfo.html')

@@ -12,6 +12,7 @@ urlpatterns = [
         name="favicon" # name of our view
     ),
     url(r'^$', home, name='home'),
+    url(r'^sobre$', sobre, name='sobre'),
     url(r'^alunos$', ListaAlunos.as_view(), name='ListaAlunos'),
     url(r'^user/(?P<user_id>\d+)/$', alunoInfo, name='aluno_url'),
     url(r'^disciplinas$', ListaDisciplinas.as_view(), name='ListaDisciplinas'),
