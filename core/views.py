@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
 from core.models import Aluno, Disciplina, Secretaria
@@ -9,6 +9,7 @@ from django.core.urlresolvers import reverse
 from easy_pdf.views import PDFTemplateView
 import xlsxwriter
 from io import BytesIO
+from core.forms import ContactForm
 
 def home(request):
     template = loader.get_template('index.html')
@@ -16,10 +17,6 @@ def home(request):
 
 def sobre(request):
     template = loader.get_template('sobre.html')
-    return HttpResponse(template.render({}, request))
-
-def contato(request):
-    template = loader.get_template('contato.html')
     return HttpResponse(template.render({}, request))
 
 def alunoInfo(request,user_id):
@@ -131,3 +128,21 @@ def excel(request):
     output.seek(0)
     response = HttpResponse(output.read(), content_type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
     return response
+
+def contato(request):
+    form = ContactForm(request.POST or None)
+    if request.method == 'POST': # If the form has been submitted...
+        if form.is_valid():
+            subject = request.POST.get('subject')
+            message = request.POST.get('message')
+            sender = request.POST.get('sender')
+            cc_myself = request.POST.get('cc_myself')
+
+            recipients = ['leo.almeida.silva@hotmail.com']
+
+            from django.core.mail import send_mail
+            send_mail(subject, message, sender, recipients)
+            template = loader.get_template('index.html')
+            return HttpResponse(template.render({}, request))
+
+    return render(request, 'contato.html', {'form': form})
