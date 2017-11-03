@@ -133,15 +133,17 @@ def contato(request):
     form = ContactForm(request.POST or None)
     if request.method == 'POST': # If the form has been submitted...
         if form.is_valid():
-            subject = request.POST.get('subject')
-            message = request.POST.get('message')
-            sender = request.POST.get('sender')
-            cc_myself = request.POST.get('cc_myself')
+            subject = form.cleaned_data['subject']
+            message = form.cleaned_data['message']
+            sender = form.cleaned_data['sender']
+            cc_myself = form.cleaned_data['cc_myself']
 
             recipients = ['leo.almeida.silva@hotmail.com']
+            #if cc_myself:
+                    #recipients.append(sender)
 
             from django.core.mail import send_mail
-            send_mail(subject, message, sender, recipients)
+            send_mail(subject, message, sender, recipients, fail_silently=False,)
             template = loader.get_template('index.html')
             return HttpResponse(template.render({}, request))
 
