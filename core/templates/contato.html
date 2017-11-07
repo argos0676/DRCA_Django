@@ -1,5 +1,5 @@
 {% extends "base.html" %} {% block titulo %}Início{% endblock %} {% block conteudo %}
-<div class="col-md-5 mt-5 mx-auto">
+<div class="col-md-5 mt-3 mx-auto">
     <div class="card">
         <div class="card-header">
             <h3 class="text-center my-3">Fale Conosco!
@@ -9,7 +9,7 @@
         <div class="card-body">
             <form action="{% url 'contato' %}" method="POST">
                 {% csrf_token %}
-                <!-- {{forms}} -->
+                <!-- {{form}}  -->
                 <div class="form-group">
                         <label for="id_name">Nome</label>
                     <input type="text" class="form-control" id="id_name" name="name" value="{{ name }}">
@@ -30,6 +30,22 @@
                         <label for="id_message">Messagem</label>
                     <textarea id="id_message" class="form-control" value="{{ message }}" type="textarea" id="message" maxlength="140" rows="7"></textarea>
                 </div>
+                <!-- {{ form.non_field_errors }}
+                <div class="fieldWrapper">
+                    {{ form.subject.errors }}
+                    <label for="{{ form.subject.id_for_label }}">Email subject:</label>
+                    {{ form.subject }}
+                </div>
+                <div class="fieldWrapper">
+                    {{ form.message.errors }}
+                    <label for="{{ form.message.id_for_label }}">Your message:</label>
+                    {{ form.message }}
+                </div>
+                <div class="fieldWrapper">
+                    {{ form.sender.errors }}
+                    <label for="{{ form.sender.id_for_label }}">Your email address:</label>
+                    {{ form.sender }}
+                </div> -->
                 <button type="submit" class="btn btn-primary pull-right" value="OK">Enviar</button>
             </form>
         </div>

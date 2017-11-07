@@ -1,16 +1,10 @@
 # -*- coding: utf-8 -*-
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
 from core.models import Aluno, Disciplina, Secretaria
 from django.views.generic import ListView
-from reportlab.pdfgen import canvas
-from reportlab.lib.units import inch
-from django.core.urlresolvers import reverse
 from easy_pdf.views import PDFTemplateView
-import xlsxwriter
-from io import BytesIO
-from core.forms import ContactForm
 
 def home(request):
     template = loader.get_template('index.html')
@@ -40,7 +34,8 @@ class ListaSecretarias(ListView):
             secretarias = secretarias.filter(nome__icontains=result)
         return secretarias
 
-def secretariaAdmin(request):   
+def secretariaAdmin(request):
+    from django.core.urlresolvers import reverse   
     return HttpResponseRedirect(reverse('admin:app_list', kwargs={'app_label':'core'}))
 
 class ListaDisciplinas(ListView):
@@ -74,6 +69,8 @@ class ListaAlunos(ListView):
         return alunos
 
 def some_view(request,user_id):
+    from reportlab.pdfgen import canvas
+    from reportlab.lib.units import inch
     response = HttpResponse(content_type='application/pdf')
     al = Aluno.objects.get(id=user_id)
     filename = str(al)
@@ -105,47 +102,59 @@ class HelloPDFView(PDFTemplateView):
     )
 
 def excel(request):
+    import xlsxwriter
+    from datetime import datetime
+    from io import BytesIO
     output = BytesIO()
     # Feed a buffer to workbook
     workbook = xlsxwriter.Workbook(output)
-    worksheet = workbook.add_worksheet("users")
-    users = Aluno.objects.all()
-    bold = workbook.add_format({'bold': True})
-    columns = ["id", "nome", "matricula", "curso"]
-    # Fill first row with columns
+    worksheet = workbook.add_worksheet("Alunos") #add nova planilha
+    alunos = Aluno.objects.all()
+    bold = workbook.add_format({'bold': True}) #negrito
+    columns = ["Id", "Matricula","Nome", "Data de Nascimento", "Curso"]
+    
     row = 0
     for i,elem in enumerate(columns):
         worksheet.write(row, i, elem, bold)
     row += 1
+    col = 0
+
+    date_format = workbook.add_format({'num_format': 'd mmmm yyyy'})
+
     # Now fill other rows with columns
-    for user in users:
-        worksheet.write(row, 0, user.id)
-        worksheet.write(row, 1, user.nome)
-        worksheet.write(row, 2, user.matricula)
-        worksheet.write(row, 3, user.curso.nome)
+    for a in alunos:
+        date = datetime.strptime(a.nascimento.__str__(), "%Y-%m-%d")
+
+        worksheet.write_number(row, col, a.id)
+        worksheet.write_number(row, col+1, a.matricula)
+        worksheet.write_string(row, col+2, a.nome)
+        worksheet.write_datetime(row, col+3, date, date_format)
+        worksheet.write_string(row, col+4, a.curso.nome)
         row += 1
+
     # Close workbook for building file
     workbook.close()
     output.seek(0)
     response = HttpResponse(output.read(), content_type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
     return response
 
-def contato(request):
+def contato(request): 
+    from core.forms import ContactForm
     form = ContactForm(request.POST or None)
-    if request.method == 'POST': # If the form has been submitted...
+    if request.method == 'POST':
         if form.is_valid():
-            subject = form.cleaned_data['subject']
-            message = form.cleaned_data['message']
-            sender = form.cleaned_data['sender']
-            cc_myself = form.cleaned_data['cc_myself']
+            subject = form.cleaned_data.get("subject")
+            message = form.cleaned_data.get("message")
+            sender = form.cleaned_data.get("sender")
 
-            recipients = ['leo.almeida.silva@hotmail.com']
-            #if cc_myself:
-                    #recipients.append(sender)
-
-            from django.core.mail import send_mail
-            send_mail(subject, message, sender, recipients, fail_silently=False,)
-            template = loader.get_template('index.html')
-            return HttpResponse(template.render({}, request))
+            if subject and message and sender:
+                from django.core.mail import send_mail, BadHeaderError
+                try:
+                    send_mail(subject, message, sender, ['leo.almeida.silva@hotmail.com'], fail_silently=True)
+                except BadHeaderError:
+                    return HttpResponse('Invalid header found.')
+                return HttpResponseRedirect('/contact/thanks/')
+            else:
+                return HttpResponse('Make sure all fields are entered and valid.')
 
     return render(request, 'contato.html', {'form': form})

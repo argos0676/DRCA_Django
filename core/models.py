@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from django.db import models
 from django.utils.encoding import smart_text
+import datetime
 
 class Credito(models.Model):
     d_credito = models.IntegerField()
@@ -55,6 +56,7 @@ class Disciplina(models.Model):
 class Aluno(models.Model):
     nome = models.CharField(max_length=30)
     matricula = models.IntegerField()
+    nascimento = models.DateField(default=datetime.date.today)
     curso = models.ForeignKey(Curso)
     credito = models.ForeignKey(Credito)
     disciplinas = models.ManyToManyField(Disciplina,blank=True)
