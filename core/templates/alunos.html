@@ -11,8 +11,8 @@
 			</span>
 		</form>
 	</div>
-	<div class="col-md-4"></div>
-	<div class="col-md-4 mt-5">
+	<div class="col-md-3"></div>
+	<div class="col-md-5 mt-5">
 		<div class="ml-4 mt-3">
 			<small class="font-weight-light">Exportar para Excel: </small>
 			<a href="/excel" style="color:green">
@@ -30,7 +30,6 @@
 						<tr>
 							<th>Matricula</th>
 							<th>Nome</th>
-							<th>Data Nascimento</th>
 							<th>Curso</th>
 							<th>Info</th>
 							<th>Imprimir</th>
@@ -41,7 +40,6 @@
 						<tr>
 							<th>{{aluno.matricula}}</th>
 							<th>{{aluno.nome}}</th>
-							<th>{{aluno.nascimento}}</th>
 							<th>{{aluno.curso.nome}}</th>
 							<th>
 								<a href="{% url 'aluno_url' aluno.id %}">

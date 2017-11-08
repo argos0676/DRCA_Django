@@ -111,7 +111,7 @@ def excel(request):
     worksheet = workbook.add_worksheet("Alunos") #add nova planilha
     alunos = Aluno.objects.all()
     bold = workbook.add_format({'bold': True}) #negrito
-    columns = ["Id", "Matricula","Nome", "Data de Nascimento", "Curso"]
+    columns = ["Id", "Matricula","Nome", "Data de Nascimento", "Sexo", "Curso"]
     
     row = 0
     for i,elem in enumerate(columns):
@@ -124,14 +124,14 @@ def excel(request):
     # Now fill other rows with columns
     for a in alunos:
         date = datetime.strptime(a.nascimento.__str__(), "%Y-%m-%d")
-
         worksheet.write_number(row, col, a.id)
         worksheet.write_number(row, col+1, a.matricula)
         worksheet.write_string(row, col+2, a.nome)
         worksheet.write_datetime(row, col+3, date, date_format)
-        worksheet.write_string(row, col+4, a.curso.nome)
+        worksheet.write_string(row, col+4, a.sexo)
+        worksheet.write_string(row, col+5, a.curso.nome)
         row += 1
-
+        
     # Close workbook for building file
     workbook.close()
     output.seek(0)
