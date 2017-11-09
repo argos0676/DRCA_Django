@@ -1,4 +1,5 @@
 {% load staticfiles %}
+{% load admin_urls %}
 <!DOCTYPE html>
 <html lang="br">
 
@@ -41,7 +42,7 @@
 				</li>
 			</ul>
 			<div class="form-inline my-2 my-lg-0">
-				<a class="btn btn-outline-info my-2 my-sm-0" href="/admin">Login</a>
+				<a class="btn btn-outline-info my-2 my-sm-0" href="{% url 'admin:index' %}">Login</a>
 			</div>
 		</div>
 	</nav>

@@ -14,8 +14,8 @@ def sobre(request):
     template = loader.get_template('sobre.html')
     return HttpResponse(template.render({}, request))
 
-def alunoInfo(request,user_id):
-	al = Aluno.objects.get(id=user_id)
+def alunoInfo(request,aluno_id):
+	al = Aluno.objects.get(id=aluno_id)
 	template = loader.get_template('alunoInfo.html')
 	return HttpResponse(template.render({'al':al},request))
 
@@ -34,9 +34,18 @@ class ListaSecretarias(ListView):
             secretarias = secretarias.filter(nome__icontains=result)
         return secretarias
 
-def secretariaAdmin(request):
-    from django.core.urlresolvers import reverse   
-    return HttpResponseRedirect(reverse('admin:app_list', kwargs={'app_label':'core'}))
+def secretariaAdmin(request, id):
+    from django.core.urlresolvers import reverse  
+    from django.utils.six.moves.urllib.parse import quote
+
+    obj =  al = Secretaria.objects.get(id=2)
+    opts = obj._meta
+    obj_url = reverse(
+        'admin:%s_%s_change' % (opts.app_label, opts.model_name),
+        args=(id,),
+        current_app='core',
+    )
+    return HttpResponseRedirect(obj_url)
 
 class ListaDisciplinas(ListView):
     template_name = 'disciplinas.html'
@@ -68,11 +77,11 @@ class ListaAlunos(ListView):
             alunos = alunos.filter(nome__icontains=result)
         return alunos
 
-def some_view(request,user_id):
+def some_view(request,aluno_id):
     from reportlab.pdfgen import canvas
     from reportlab.lib.units import inch
     response = HttpResponse(content_type='application/pdf')
-    al = Aluno.objects.get(id=user_id)
+    al = Aluno.objects.get(id=aluno_id)
     filename = str(al)
     response['Content-Disposition'] = 'attachment; filename={0}.pdf'.format(filename)
     

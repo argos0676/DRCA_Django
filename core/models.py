@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 from django.db import models
+from django.core.urlresolvers import reverse
+from django.contrib.contenttypes.models import ContentType
 import datetime
 
 class Credito(models.Model):
@@ -9,7 +11,7 @@ class Credito(models.Model):
     a_credito_l = models.IntegerField()
     
     def __str__(self):
-        return self.d_credito
+        return str(self.d_credito)
     
 class Departamento(models.Model):
     nome = models.CharField(max_length=30)
@@ -69,3 +71,7 @@ class Aluno(models.Model):
     
     def __str__(self):
         return self.nome
+
+    def get_admin_url(self):
+        content_type = ContentType.objects.get_for_model(self.__class__)
+        return reverse("admin:%s_%s_change" % (content_type.app_label, content_type.model), args=(self.id,))

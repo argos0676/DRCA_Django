@@ -1,5 +1,6 @@
 from django.conf.urls import url
 from core.views import *
+from django.contrib import admin
 from django.contrib.staticfiles.storage import staticfiles_storage
 from django.views.generic.base import RedirectView
 
@@ -15,11 +16,12 @@ urlpatterns = [
     url(r'^sobre$', sobre, name='sobre'),
     url(r'^contato$', contato, name='contato'),
     url(r'^alunos$', ListaAlunos.as_view(), name='ListaAlunos'),
-    url(r'^user/(?P<user_id>\d+)/$', alunoInfo, name='aluno_url'),
+    url(r'^aluno/(?P<aluno_id>\d+)/$', alunoInfo, name='aluno_url'),
     url(r'^disciplinas$', ListaDisciplinas.as_view(), name='ListaDisciplinas'),
     url(r'^secretarias$', ListaSecretarias.as_view(), name='ListaSecretarias'),
-    url(r'^secretariaAdmin$', secretariaAdmin, name='secretariaAdmin'),
-    url(r'^pdf/(?P<user_id>\d+)/$', some_view, name='some_view'),
+    url(r'^secretaria/(?P<id>\d+)/$', secretariaAdmin, name='secretaria'),
+    url(r'^pdf/(?P<aluno_id>\d+)/$', some_view, name='some_view'),
     url(r'^pdf$', HelloPDFView.as_view(), name='HelloPDFView'),
     url(r'^excel$', excel, name='excel'),
+    url(r'^admin/', admin.site.urls),
 ]
