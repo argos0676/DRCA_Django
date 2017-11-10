@@ -1,6 +1,5 @@
 from django.conf.urls import url
 from core.views import *
-from django.contrib import admin
 from django.contrib.staticfiles.storage import staticfiles_storage
 from django.views.generic.base import RedirectView
 
@@ -23,5 +22,4 @@ urlpatterns = [
     url(r'^pdf/(?P<aluno_id>\d+)/$', some_view, name='some_view'),
     url(r'^pdf$', HelloPDFView.as_view(), name='HelloPDFView'),
     url(r'^excel$', excel, name='excel'),
-    url(r'^admin/', admin.site.urls),
 ]

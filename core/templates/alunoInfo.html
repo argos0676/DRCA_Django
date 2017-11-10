@@ -33,7 +33,7 @@
 					<input type="text" class="form-control" id="usr" value="{{al.curso.nome}}" disabled style="background-color:white">
 				</div>
 			</div>
-			{%if al.disciplinas != none%}
+			{%if al.disciplinas.all %}
 			<div class="row">
 				<div class="form-group col-md-10">
 					<label for="usr">Disciplinas:</label>
