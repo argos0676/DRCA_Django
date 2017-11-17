@@ -2,6 +2,8 @@ from django.conf.urls import url
 from core.views import *
 from django.contrib.staticfiles.storage import staticfiles_storage
 from django.views.generic.base import RedirectView
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     url(r'^favicon.ico$',
@@ -23,3 +25,6 @@ urlpatterns = [
     url(r'^pdf$', HelloPDFView.as_view(), name='HelloPDFView'),
     url(r'^excel$', excel, name='excel'),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static('/static/', document_root='static_files')

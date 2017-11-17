@@ -123,6 +123,11 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = (
-                    os.path.join(BASE_DIR,"node_modules"),
-                    os.path.join(BASE_DIR,"imagens"),
+                   ("bootstrap", os.path.join(BASE_DIR,"node_modules/bootstrap/")),  
+                    ("font-awesome", os.path.join(BASE_DIR,"node_modules/font-awesome/")),
+                    ("jquery", os.path.join(BASE_DIR,"node_modules/jquery/")),
+                    ("popper.js", os.path.join(BASE_DIR,"node_modules/popper.js/")),
+                    ("imagens", os.path.join(BASE_DIR,"imagens/")),
 )
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'static_files')

@@ -22,8 +22,5 @@
     "jquery": "^3.2.1",
     "popper.js": "^1.12.6"
   },
-  "devDependencies": {
-    "gulp": "^3.9.1",
-    "gulp-pug": "^3.3.0"
-  }
+  "devDependencies": {}
 }
