@@ -1,5 +1,7 @@
 {% load staticfiles %}
 {% load admin_urls %}
+{% load compress %}
+
 <!DOCTYPE html>
 <html lang="br">
 
@@ -7,9 +9,11 @@
 	<meta charset="utf-8">
 	<title> {% block titulo %}{% endblock %}</title>
 
+	{% compress css inline %}
+	<link rel="icon" href="{% static 'imagens/favicon.ico' %}"> 
 	<link href="{% static 'bootstrap/dist/css/bootstrap.min.css' %}" rel="stylesheet">
 	<link rel="stylesheet" href="{% static 'font-awesome/css/font-awesome.min.css' %} ">
-	<link rel="icon" href="{% static 'imagens/favicon.ico' %}">
+	{% endcompress %}
 </head>
 
 <body>
@@ -56,9 +60,11 @@
 			<small>Desenvolvido por Leonardo Almeida</small>
 		</p>
 	</div>
+	{% compress js inline %}
 	<script src="{% static 'jquery/dist/jquery.slim.min.js' %}"></script>
-	 <script src="{% static 'popper.js/dist/umd/popper.min.js' %}"></script> 
-	<script src="{% static 'bootstrap/dist/js/bootstrap.min.js' %}"></script>
+	<script src="{% static 'popper.js/dist/umd/popper.min.js' %}"></script> 
+	<script src="{% static 'bootstrap/dist/js/bootstrap.min.js' %}"></script>  
+	{% endcompress %}
 </body>
 
 </html>

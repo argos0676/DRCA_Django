@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'core',
     'easy_pdf',
+    'compressor',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -121,13 +122,21 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static_files')
+
+COMPRESS_ENABLED  = True
 
 STATICFILES_DIRS = (
-                   ("bootstrap", os.path.join(BASE_DIR,"node_modules/bootstrap/")),  
+                    ("bootstrap", os.path.join(BASE_DIR,"node_modules/bootstrap/")),  
                     ("font-awesome", os.path.join(BASE_DIR,"node_modules/font-awesome/")),
                     ("jquery", os.path.join(BASE_DIR,"node_modules/jquery/")),
                     ("popper.js", os.path.join(BASE_DIR,"node_modules/popper.js/")),
                     ("imagens", os.path.join(BASE_DIR,"imagens/")),
 )
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'static_files')
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'compressor.finders.CompressorFinder',
+)
+

@@ -7,11 +7,14 @@ Departamento de Registro e Controle Academico - Projeto Web desenvolvido com Fra
     apt-get install -y nodejs
     npm install
 
+    --dentro do projeto:
+    npm init 
+    npm i (--instala as dependências)
+
     pip install reportlab
     pip install django-easy-pdf
     pip install WeasyPrint
     pip install xlsxWriter
-    
-    --dentro do projeto:
-    npm init 
-    npm i (--instala as dependências)
+    pip install rcssmin --install-option="--without-c-extensions"
+    pip install rjsmin --install-option="--without-c-extensions"
+    pip install django-compressor --upgrade
