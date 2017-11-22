@@ -123,15 +123,16 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static_files')
+STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
 
 COMPRESS_ENABLED  = True
+COMPRESS_URL = STATIC_URL
+COMPRESS_ROOT = STATIC_ROOT
+COMPRESS_STORAGE = STATICFILES_STORAGE
 
 STATICFILES_DIRS = (
-                    ("bootstrap", os.path.join(BASE_DIR,"node_modules/bootstrap/")),  
-                    ("font-awesome", os.path.join(BASE_DIR,"node_modules/font-awesome/")),
-                    ("jquery", os.path.join(BASE_DIR,"node_modules/jquery/")),
-                    ("popper.js", os.path.join(BASE_DIR,"node_modules/popper.js/")),
-                    ("imagens", os.path.join(BASE_DIR,"imagens/")),
+            os.path.join(BASE_DIR,"node_modules"),
+            os.path.join(BASE_DIR,"imagens"),
 )
 
 STATICFILES_FINDERS = (
