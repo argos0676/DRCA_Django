@@ -3,6 +3,9 @@ from __future__ import unicode_literals
 
 from django.contrib import admin
 from core.models import *
+admin.site.site_title = 'DRCA'
+admin.site.site_header = 'Administração - DRCA'
+admin.site.index_title = 'Ambiente de administração do site'
 
 class AlunoAdmin(admin.ModelAdmin):
     model = Aluno
