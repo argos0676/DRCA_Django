@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 
 import os
-from django.conf.global_settings import MIDDLEWARE_CLASSES, STATICFILES_DIRS
+from django.conf.global_settings import MIDDLEWARE, STATICFILES_DIRS
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     'compressor',
 ]
 
-MIDDLEWARE_CLASSES = [
+MIDDLEWARE  = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -140,4 +140,11 @@ STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
     'compressor.finders.CompressorFinder',
 )
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'leonardoalmeida.al@gmail.com'
+EMAIL_HOST_PASSWORD = '14945042780Leo'
+EMAIL_USE_TLS = True
 

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from django.db import models
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from django.contrib.contenttypes.models import ContentType
 import datetime
 
@@ -21,7 +21,7 @@ class Departamento(models.Model):
     
 class Professor(models.Model):
     nome = models.CharField(max_length=30)
-    departamento = models.ForeignKey(Departamento, null=True)
+    departamento = models.ForeignKey(Departamento, on_delete=models.CASCADE, null = True)
     
     def __str__(self):
         return self.nome
@@ -29,14 +29,14 @@ class Professor(models.Model):
 class Secretaria(models.Model):
     nome = models.CharField(max_length=30)
     tipo = models.IntegerField()
-    departamento = models.ForeignKey(Departamento, null=True)
+    departamento = models.ForeignKey(Departamento, on_delete=models.CASCADE, null = True)
     
     def __str__(self):
         return self.nome
        
 class Curso(models.Model):
     nome = models.CharField(max_length=30)
-    secretaria = models.ForeignKey(Secretaria, null=True)
+    secretaria = models.ForeignKey(Secretaria, on_delete=models.CASCADE, null = True)
     
     def __str__(self):
         return self.nome
@@ -46,10 +46,10 @@ class Disciplina(models.Model):
     codigo = models.CharField(max_length=30)
     obg_let = models.CharField(max_length=30)
     status = models.CharField(max_length=30)
-    credito = models.ForeignKey(Credito)
-    d_requisito = models.ManyToManyField('Disciplina',blank=True)
-    curso = models.ForeignKey(Curso)
-    professor = models.ForeignKey(Professor,null=True)
+    credito = models.ForeignKey(Credito, on_delete=models.CASCADE)
+    ##d_requisito = models.ManyToManyField(Disciplina)
+    curso = models.ForeignKey(Curso, on_delete=models.CASCADE)
+    professor = models.ForeignKey(Professor,on_delete=models.CASCADE, null = True)
     
     def __str__(self):
         return self.nome
@@ -64,10 +64,10 @@ class Aluno(models.Model):
     nome = models.CharField(max_length=30)
     matricula = models.IntegerField()
     nascimento = models.DateField(default=datetime.date.today)
-    curso = models.ForeignKey(Curso)
+    curso = models.ForeignKey(Curso, on_delete=models.CASCADE, null = True)
     sexo = models.CharField(max_length = 50, choices = SEXO_CHOICES)
-    credito = models.ForeignKey(Credito,on_delete=models.CASCADE)
-    disciplinas = models.ManyToManyField(Disciplina,blank=True)
+    credito = models.ForeignKey(Credito,on_delete=models.CASCADE, null = True)
+    disciplinas = models.ManyToManyField(Disciplina)
     
     def __str__(self):
         return self.nome

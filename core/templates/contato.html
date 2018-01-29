@@ -30,10 +30,10 @@
                         <label for="id_message">Messagem</label>
                     <textarea id="id_message" class="form-control" value="{{ message }}" type="textarea" id="message" maxlength="140" rows="7"></textarea>
                 </div>
-                <!-- {{ form.non_field_errors }}
+                {% comment %} {{ form.non_field_errors }}
                 <div class="fieldWrapper">
                     {{ form.subject.errors }}
-                    <label for="{{ form.subject.id_for_label }}">Email subject:</label>
+                    <label for="{{ form.subject.id_for_label }}">subject:</label>
                     {{ form.subject }}
                 </div>
                 <div class="fieldWrapper">
@@ -45,7 +45,7 @@
                     {{ form.sender.errors }}
                     <label for="{{ form.sender.id_for_label }}">Your email address:</label>
                     {{ form.sender }}
-                </div> -->
+                </div> {% endcomment %}
                 <button type="submit" class="btn btn-info pull-right" value="OK">Enviar</button>
             </form>
         </div>

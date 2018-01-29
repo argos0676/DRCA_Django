@@ -19,7 +19,7 @@ def alunoInfo(request,aluno_id):
 	template = loader.get_template('alunoInfo.html')
 	return HttpResponse(template.render({'al':al},request))
 
-class ListaSecretarias(ListView):
+class ListaSecretarias(ListView): 
     template_name = 'secretarias.html'
     model = Secretaria
     context_object_name = 'secretarias'
@@ -152,17 +152,33 @@ def contato(request):
     form = ContactForm(request.POST or None)
     if request.method == 'POST':
         if form.is_valid():
+            sender = form.cleaned_data.get("sender")
             subject = form.cleaned_data.get("subject")
             message = form.cleaned_data.get("message")
-            sender = form.cleaned_data.get("sender")
 
             if subject and message and sender:
-                from django.core.mail import send_mail, BadHeaderError
-                try:
-                    send_mail(subject, message, sender, ['leo.almeida.silva@hotmail.com'], fail_silently=True)
-                except BadHeaderError:
-                    return HttpResponse('Invalid header found.')
-                return HttpResponseRedirect('/contact/thanks/')
+                # from django.core.mail import send_mail, BadHeaderError
+                # try:
+                #     send_mail(subject, message, sender, ['leonardoalmeida.al@gmail.com'], fail_silently=False)
+                # except BadHeaderError:
+                #     return HttpResponse('Invalid header found.')
+                # return HttpResponseRedirect('/')
+                from django.core import mail
+                connection = mail.get_connection()
+
+                # Manually open the connection
+                connection.open()
+
+                # Construct an email message that uses the connection
+                email1 = mail.EmailMessage(
+                    subject,
+                    message,
+                    sender,
+                    ['leonardoalmeida.al@gmail.com'],
+                    connection=connection,
+                )
+                email1.send()
+                connection.close()
             else:
                 return HttpResponse('Make sure all fields are entered and valid.')
 
