@@ -1,19 +1,35 @@
-{% load staticfiles %}
-{% load admin_urls %}
-{% load compress %}
+{% load staticfiles %} {% load admin_urls %} {% load compress %}
 
 <!DOCTYPE html>
 <html lang="br">
+<style>
+		html {
+			height: 100%;
+		  }
+	  
+		  body {
+			min-height: 100%;
+			display: flex;
+			flex-direction: column;
+		  }
+	  
+		  .content {
+			flex: 1;
+		  }
+
+		  footer p{
+			font-style: italic;
+			background-color: whitesmoke;
+		   }
+</style>
 
 <head>
 	<meta charset="utf-8">
 	<title> {% block titulo %}{% endblock %}</title>
 
-	<link rel="icon" href="{% static 'favicon.ico' %}"> 
-	{% compress css %}
+	<link rel="icon" href="{% static 'favicon.ico' %}"> {% compress css %}
 	<link href="{% static 'bootstrap/dist/css/bootstrap.min.css' %}" rel="stylesheet">
-	<link href="{% static 'font-awesome/css/font-awesome.min.css' %} "rel="stylesheet" >
-	{% endcompress %}
+	<link href="{% static 'font-awesome/css/font-awesome.min.css' %} " rel="stylesheet"> {% endcompress %}
 </head>
 
 <body>
@@ -50,21 +66,21 @@
 			</div>
 		</div>
 	</nav>
-	{% block conteudo %} {% endblock %}
+	<div class="content">
+		{% block conteudo %} {% endblock %}
+	</div>
 	<!-- FOOTER -->
-	<hr>
-	<div class="d-flex justify-content-center">
+	<footer class="footer-copyright">
 		<p align="center" class="font-weight-light">
 			<small>Universidade Federal Rural do Rio de Janeiro</small>
 			<br/>
 			<small>Desenvolvido por Leonardo Almeida</small>
 		</p>
-	</div>
+	</footer>
 	{% compress js %}
 	<script src="{% static 'jquery/dist/jquery.slim.min.js' %}"></script>
-	<script src="{% static 'popper.js/dist/umd/popper.min.js' %}"></script> 
-	<script src="{% static 'bootstrap/dist/js/bootstrap.min.js' %}"></script>  
-	{% endcompress %}
+	<script src="{% static 'popper.js/dist/umd/popper.min.js' %}"></script>
+	<script src="{% static 'bootstrap/dist/js/bootstrap.min.js' %}"></script> {% endcompress %}
 </body>
 
 </html>

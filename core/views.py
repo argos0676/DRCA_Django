@@ -35,8 +35,7 @@ class ListaSecretarias(ListView):
         return secretarias
 
 def secretariaAdmin(request, id):
-    from django.core.urlresolvers import reverse  
-    from django.utils.six.moves.urllib.parse import quote
+    from django.urls import reverse  
 
     obj =  al = Secretaria.objects.get(id=2)
     opts = obj._meta
@@ -80,6 +79,7 @@ class ListaAlunos(ListView):
 def some_view(request,aluno_id):
     from reportlab.pdfgen import canvas
     from reportlab.lib.units import inch
+    
     response = HttpResponse(content_type='application/pdf')
     al = Aluno.objects.get(id=aluno_id)
     filename = str(al)
@@ -114,6 +114,7 @@ def excel(request):
     import xlsxwriter
     from datetime import datetime
     from io import BytesIO
+
     output = BytesIO()
     # Feed a buffer to workbook
     workbook = xlsxwriter.Workbook(output)
@@ -149,6 +150,7 @@ def excel(request):
 
 def contato(request): 
     from core.forms import ContactForm
+
     form = ContactForm(request.POST or None)
     if request.method == 'POST':
         if form.is_valid():
